@@ -61,8 +61,8 @@ jobs:
           file: docker/backend/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ${{ env.IMAGE_REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
-            ${{ env.IMAGE_REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
+            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
+            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: |
@@ -116,8 +116,8 @@ jobs:
           build-args: |
             VITE_API_BASE=http://localhost:8000
           tags: |
-            ${{ env.IMAGE_REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
-            ${{ env.IMAGE_REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
+            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
+            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: |
