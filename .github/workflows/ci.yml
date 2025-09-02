@@ -47,6 +47,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Compute owner lowercase
+        id: owner
+        shell: bash
+        run: echo "owner_lc=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
 
       - name: Compute image tags
         id: meta
@@ -61,8 +66,8 @@ jobs:
           file: docker/backend/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
-            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
+            ghcr.io/${{ steps.owner.outputs.owner_lc }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
+            ghcr.io/${{ steps.owner.outputs.owner_lc }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: |
@@ -116,8 +121,8 @@ jobs:
           build-args: |
             VITE_API_BASE=http://localhost:8000
           tags: |
-            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
-            ${{ env.IMAGE_REGISTRY }}/${{ toLower(github.repository_owner) }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
+            ghcr.io/${{ steps.owner.outputs.owner_lc }}/${{ env.IMAGE_NAME }}:sha-${{ steps.meta.outputs.SHORT_SHA }}
+            ghcr.io/${{ steps.owner.outputs.owner_lc }}/${{ env.IMAGE_NAME }}:branch-${{ steps.meta.outputs.BRANCH_NAME }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: |
