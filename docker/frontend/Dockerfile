@@ -1,7 +1,7 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 #copie somente os manifestos para cache eficiente
-COPY frontend/package*.json ,/
+COPY frontend/package*.json ./
 #instalação determinística com lockfile
 RUN npm ci
 #permitir override de API Base no build
