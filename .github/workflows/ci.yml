@@ -105,7 +105,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-        
+
+      - name: Compute owner lowercase
+        id: owner
+        shell: bash
+        run: echo "owner_lc=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
+      
       - name: Compute image tags
         id: meta
         run: |
@@ -128,4 +133,4 @@ jobs:
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
-            
+
