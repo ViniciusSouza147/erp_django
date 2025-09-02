@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=erpdb
+      - POSTGRES_USER=erp_user
+      - POSTGRES_PASSWORD=erp_pass
+    ports:
+      - "55432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+    environment:
+      GUNICORN_CMD_ARGS: "--workers 2 --access-logfile - --error-logfile - --log-level info"
+    env_file:
+      - backend/.env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+volumes:
+  db_data: {}
