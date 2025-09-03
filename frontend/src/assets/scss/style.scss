@@ -20,7 +20,7 @@ File: style.css
         -   Invoice, Full Calender, File Upload,
 =================================================================================
 =================================================================================== */
-@import '~bootstrap/dist/css/bootstrap';
+@import 'bootstrap/dist/css/bootstrap.css';
 // General theme contents
 @import 'partials/variables';
 @import 'partials/general';
@@ -48,4 +48,4 @@ File: style.css
 
 // Other
 @import 'partials/other/chat';
-@import 'partials/third-party/third-party';
+//@import 'partials/third-party/third-party';
