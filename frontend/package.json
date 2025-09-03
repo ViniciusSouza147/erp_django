@@ -10,8 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.9.0",
+    "axios": "^1.11.0",
+    "bootstrap": "^4.6.2",
+    "formik": "^2.4.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-bootstrap": "^1.6.8",
+    "react-dom": "^19.1.1",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-router-dom": "^5.3.4",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
+    "sass": "^1.92.0",
+    "styled-components": "^6.1.19",
+    "yup": "^1.7.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
