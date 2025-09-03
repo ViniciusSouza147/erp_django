@@ -1,13 +1,11 @@
-let BACKEND_SERVER = null;
-if (process.env.REACT_APP_BACKEND_SERVER) {
-  BACKEND_SERVER = process.env.REACT_APP_BACKEND_SERVER;
-} else {
-  BACKEND_SERVER = "http://localhost:5000/api/";
-}
+// Em Vite, as envs vêm de import.meta.env e devem ter prefixo VITE_
+// No Docker/CI, já passamos/geramos VITE_API_BASE no build.
 
-export const BASENAME = ''; // don't add '/' at end off BASENAME
+const BACKEND_SERVER = import.meta.env.VITE_API_BASE || 'http://localhost:8000';
+
+export const BASENAME = ''; // sem barra no fim
 export const BASE_URL = '/app/dashboard/default';
-export const BASE_TITLE = ' | React Datta Able ';
+export const BASE_TITLE = ' | LOS ERP ';
 export const API_SERVER = BACKEND_SERVER;
 
 export const CONFIG = {
